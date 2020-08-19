@@ -1,4 +1,7 @@
 <?php
+spl_autoload_register(function (string $className) {
+    require sprintf('./%s.php', $className);
+});
 
 use App\Kernel;
 use Symfony\Component\Dotenv\Dotenv;
