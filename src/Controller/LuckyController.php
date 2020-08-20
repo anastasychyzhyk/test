@@ -6,10 +6,10 @@ namespace App\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
-class LuckyController
+class LuckyController extends AbstractController
 {
     /**
-    * @Route("/lucky/number")
+    * @Route("/", name="number")
     */
     public function number()
     {
