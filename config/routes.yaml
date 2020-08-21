@@ -1,6 +1,3 @@
 #index:
-   # path: /
-    # controller: App\Controller\LuckyController::number
-#index:
- # path: /
-  #controller: App\Controller\LuckyController::index
+#    path: /
+#    controller: App\Controller\DefaultController::index
