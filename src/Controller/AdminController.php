@@ -26,4 +26,14 @@ class AdminController extends AbstractController
             'controller_name' => 'AdminController',
         ]);
     }
+	
+	 /**
+     * @Route("/mytest", name="mytest")
+     */
+    public function mytest()
+    {
+        return $this->render('admin/index.html.twig', [
+            'controller_name' => 'sdewbfh',
+        ]);
+    }
 }
