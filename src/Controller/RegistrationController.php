@@ -22,10 +22,10 @@ class RegistrationController extends AbstractController
     public function index3(Request $request, UserRepository $userRepository, $code)
     {
 		echo 'Okkk';
+		
 		$userRepository->findOneBy(['confirmationCode' => $code])->activate();
-		$em = $this->getDoctrine()->getManager();
-		 $em->flush();
-		 return $this->render('base.html.twig');
+		$this->getDoctrine()->getManager()->flush();
+		return $this->render('base.html.twig');
 	}
 	
     /**
