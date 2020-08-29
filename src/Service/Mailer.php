@@ -9,15 +9,17 @@ use Symfony\Component\Mime\Email;
 
 class Mailer
 {
-    private MailerInterface $mailer;
 
-    public function __construct(MailerInterface $mailer)
+
+    public function __construct()
     {
-        $this->mailer=$mailer;
+ 
     }
 
     public function sendConfirmationMessage()
     {
+        $transport = Transport::fromDsn('smtp://localhost');
+$mailer = new Mailer($transport);
         $email = (new Email())
             ->from('anastasychizhik@gmail.com')
             ->to('katenok-nastja@mail.ru')
