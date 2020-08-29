@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mime\Address;
 
 class Mailerr
 {
@@ -19,7 +20,7 @@ class Mailerr
     public function sendConfirmationMessage(string $sendTo, string $subject, User $user)
     {
         $email = (new TemplatedEmail())
-            ->from('quiz-mailer@mail.ru')
+            ->from(new Address('quiz-mailer@mail.ru', 'Quiz'))
             ->to($sendTo)
             ->subject($subject)
 			->htmlTemplate('email/confirmation.html.twig', ['user'=>$user])
