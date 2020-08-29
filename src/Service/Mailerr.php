@@ -20,13 +20,13 @@ class Mailerr
         $this->mailer=$mailer;
     }
 
-    public function sendConfirmationMessage(string $sendTo, string $subject)
+    public function sendConfirmationMessage(string $sendTo, string $subject, User $user)
     {
         $email = (new Email())
             ->from('katenok-nastja@mail.ru')
             ->to($sendTo)
             ->subject($subject)
-			->htmlTemplate('email/confirmation.html.twig');
+			->htmlTemplate('email/confirmation.html.twig', ['user'=>$user]);
         try {
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {
