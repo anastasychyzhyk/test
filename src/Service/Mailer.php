@@ -9,7 +9,7 @@ use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\Transport;
 use Symfony\Component\Mailer\Mailer;
 
-class Mailer
+class Mailerr
 {
 
 
