@@ -20,18 +20,13 @@ class Mailerr
         $this->mailer=$mailer;
     }
 
-    public function sendConfirmationMessage()
+    public function sendConfirmationMessage(string $sendTo, string $subject)
     {
         $email = (new Email())
             ->from('katenok-nastja@mail.ru')
-            ->to('katenok-nastja@mail.ru')
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
-            //->replyTo('fabien@example.com')
-            //->priority(Email::PRIORITY_HIGH)
-            ->subject('45345345Time for Symfony Mailer!')
-            ->text('234234234Sending emails is fun again!')
-            ->html('<p>See Twig integration for better HTML integration!</p>');
+            ->to($sendTo)
+            ->subject($subject)
+			->htmlTemplate('confirmation.html.twig')
         try {
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {
