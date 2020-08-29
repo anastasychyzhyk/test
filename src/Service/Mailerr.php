@@ -19,7 +19,7 @@ class Mailerr
     public function sendConfirmationMessage(string $sendTo, string $subject, User $user)
     {
         $email = (new TemplatedEmail())
-            ->from('anastasychizhik@gmail.com')
+            ->from('katenok-nastja@mail.ru')
             ->to($sendTo)
             ->subject($subject)
 			->htmlTemplate('email/confirmation.html.twig', ['user'=>$user])
