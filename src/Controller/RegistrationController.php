@@ -21,6 +21,7 @@ class RegistrationController extends AbstractController
     public function index3(Request $request, $code)
     {
 		echo 'Okkk';
+		 return $this->render('base.html.twig');
 	}
 	
     /**
