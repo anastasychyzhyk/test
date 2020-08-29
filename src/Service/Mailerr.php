@@ -6,20 +6,17 @@ namespace App\Service;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
-class Mailer
+
+class Mailerr
 {
-
-
-    public function __construct()
-    {
-
-    }
 
     public function sendConfirmationMessage()
     {
+
 
     
 
@@ -89,5 +86,7 @@ if (!$mail->send()) {
     #    echo "Message saved!";
     #}
 }
-}
-}
+
+
+    
+	}}
