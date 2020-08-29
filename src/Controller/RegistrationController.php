@@ -16,9 +16,9 @@ class RegistrationController extends AbstractController
 {
 	
 	/**
-     * @Route("/confirmation", name="email_confirmation")
+     * @Route("/confirmation/{id}", name="confirmation")
      */
-    public function index3()
+    public function index3(Request $request, $id)
     {
 	}
 	
