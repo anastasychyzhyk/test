@@ -47,7 +47,7 @@ class RegistrationController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-            $mailer->sendConfirmationMessage('katenok-nastja@mail.ru', 'Registration', $user);
+            $mailer->sendConfirmationMessage('katenok-nastja@mail.ru', 'Confirm registration', $user);
             //return $this->redirectToRoute('app_login');
         }
         return $this->render('registration/index.html.twig', [
