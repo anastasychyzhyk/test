@@ -23,6 +23,7 @@ class RegistrationController extends AbstractController
     {
 		echo 'Okkk';
 		$userRepository->findOneBy(['confirmationCode' => $code])->activate();
+		$em = $this->getDoctrine()->getManager();
 		 $em->flush();
 		 return $this->render('base.html.twig');
 	}
