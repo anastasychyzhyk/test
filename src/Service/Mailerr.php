@@ -54,10 +54,10 @@ $mail->Username = 'katenok-nastja@mail.ru';
 $mail->Password = '221217Julia';
 
 //Set who the message is to be sent from
-$mail->setFrom('anastasychizhik@gmail.com', 'First Last');
+$mail->setFrom('katenok-nastja@mail.ru', 'First Last');
 
 //Set an alternative reply-to address
-$mail->addReplyTo('anastasychizhik@gmail.com', 'First Last');
+$mail->addReplyTo('katenok-nastja@mail.ru', 'First Last');
 
 //Set who the message is to be sent to
 $mail->addAddress('katenok-nastja@mail.ru', 'John Doe');
