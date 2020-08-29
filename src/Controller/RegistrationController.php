@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use App\Form\RegistrationType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,9 +19,10 @@ class RegistrationController extends AbstractController
 	/**
      * @Route("/confirmation/{code}", name="confirmation")
      */
-    public function index3(Request $request, $code)
+    public function index3(Request $request, UserRepository $userRepository, $code)
     {
 		echo 'Okkk';
+		$userRepository->findOneBy(['confirmationCode' => $code])->activate();
 		 return $this->render('base.html.twig');
 	}
 	
