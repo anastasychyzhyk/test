@@ -33,7 +33,7 @@ $mail->isSMTP();
 $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
 //Set the hostname of the mail server
-$mail->Host = 'smtp.gmail.com';
+$mail->Host = 'smtp.mail.ru';
 // use
 // $mail->Host = gethostbyname('smtp.gmail.com');
 // if your network does not support SMTP over IPv6
@@ -48,10 +48,10 @@ $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 $mail->SMTPAuth = true;
 
 //Username to use for SMTP authentication - use full email address for gmail
-$mail->Username = 'anastasychizhik@gmail.com';
+$mail->Username = 'katenok-nastja@mail.ru';
 
 //Password to use for SMTP authentication
-$mail->Password = 'Anastasy';
+$mail->Password = '221217Julia';
 
 //Set who the message is to be sent from
 $mail->setFrom('anastasychizhik@gmail.com', 'First Last');
@@ -60,14 +60,14 @@ $mail->setFrom('anastasychizhik@gmail.com', 'First Last');
 $mail->addReplyTo('anastasychizhik@gmail.com', 'First Last');
 
 //Set who the message is to be sent to
-$mail->addAddress('anastasychizhik@gmail.com', 'John Doe');
+$mail->addAddress('katenok-nastja@mail.ru', 'John Doe');
 
 //Set the subject line
 $mail->Subject = 'PHPMailer GMail SMTP test';
 
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body
-$mail->msgHTML(file_get_contents('contents.html'), __DIR__);
+//$mail->msgHTML(file_get_contents('contents.html'), __DIR__);
 
 //Replace the plain text body with one created manually
 $mail->Body = 'This is a plain-text message body';
