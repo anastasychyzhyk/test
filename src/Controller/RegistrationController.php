@@ -20,6 +20,7 @@ class RegistrationController extends AbstractController
      */
     public function index3(Request $request, $code)
     {
+		echo 'Okkk';
 	}
 	
     /**
