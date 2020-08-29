@@ -1,19 +1,13 @@
-<!doctype html>
-<html lang="ru">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Подтверждение регистрации!</title>
+    <title>Confirm registration</title>
 </head>
 <body>
 <div class="container">
     <p>{{ user.name }}, welcome to Quiz!</p>
-                                <button type="button">
-                                   <a href="{{ url('confirmation', {'code': user.confirmationCode }) }}">электронный адрес</a>
-                                </button>
-    <p>Чтобы завершить регистрацию, подтвердите <a href="{{ url('confirmation', {'code': user.confirmationCode }) }}">электронный адрес</a></p>
+    <p><a href="{{ url('confirmation', {'code': user.confirmationCode }) }}">Click here to activate your account</a></p>
 </div>
 </body>
 </html>
