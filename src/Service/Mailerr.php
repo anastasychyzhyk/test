@@ -70,7 +70,7 @@ $mail->Subject = 'PHPMailer GMail SMTP test';
 $mail->msgHTML(file_get_contents('contents.html'), __DIR__);
 
 //Replace the plain text body with one created manually
-$mail->AltBody = 'This is a plain-text message body';
+$mail->Body = 'This is a plain-text message body';
 
 
 //send the message, check for errors
