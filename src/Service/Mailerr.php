@@ -26,7 +26,7 @@ class Mailerr
             ->from('katenok-nastja@mail.ru')
             ->to($sendTo)
             ->subject($subject)
-			->htmlTemplate('confirmation.html.twig');
+			->htmlTemplate('email/confirmation.html.twig');
         try {
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {
