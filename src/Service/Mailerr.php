@@ -25,7 +25,7 @@ class Mailerr
             ->subject($subject)
 			->htmlTemplate('email/confirmation.html.twig', ['user'=>$user])
 			->context(['user'=>$user,])
-			->getHeaders()->addTextHeader('X-Auto-Response-Suppress', 'OOF, DR, RN, NRN, AutoReply');
+			->addTextHeader('X-Auto-Response-Suppress', 'OOF, DR, RN, NRN, AutoReply');
         try {
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {
