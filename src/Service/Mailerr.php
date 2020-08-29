@@ -2,14 +2,10 @@
 declare(strict_types=1);
 
 namespace App\Service;
-
+use App\Entity\User;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
 class Mailerr
 {
@@ -22,11 +18,12 @@ class Mailerr
 
     public function sendConfirmationMessage(string $sendTo, string $subject, User $user)
     {
-        $email = (new Email())
+        $email = (new TemplatedEmail())
             ->from('katenok-nastja@mail.ru')
             ->to($sendTo)
             ->subject($subject)
-			->htmlTemplate('email/confirmation.html.twig', ['user'=>$user]);
+			->htmlTemplate('email/confirmation.html.twig', ['user'=>$user])
+			->context(['user'=>$user,]);
         try {
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {

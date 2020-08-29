@@ -14,6 +14,14 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegistrationController extends AbstractController
 {
+	
+	/**
+     * @Route("/email_confirmation", name="email_confirmation")
+     */
+    public function index3()
+    {
+	}
+	
     /**
      * @Route("/registration", name="registration")
      */
