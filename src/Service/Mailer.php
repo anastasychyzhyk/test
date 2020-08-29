@@ -28,8 +28,12 @@ class Mailer
             ->subject('Time for Symfony Mailer!')
             ->text('Sending emails is fun again!')
             ->html('<p>See Twig integration for better HTML integration!</p>');
-
+try{
             $this->mailer->send($email);
+}
+       catch (TransportExceptionInterface $e) {
+           echo $e->getDebug();
+        }
 
 
         // ...
