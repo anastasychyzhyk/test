@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="container">
-    <p>Добро пожаловать, {{ user.username }}!</p>
+    <p>Добро пожаловать, {{ user.name }}!</p>
     <p>Чтобы завершить регистрацию, подтвердите <a href="{{ path('email_confirmation', {'code': user.confirmationCode }) }}">электронный адрес</a></p>
 </div>
 </body>
