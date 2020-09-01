@@ -9,49 +9,57 @@ use App\Form\RegistrationType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use App\Service\CodeGenerator;
-use App\Service\Mailerr;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Service\UserEditor;
+use App\Service\Mailer;
 
 class RegistrationController extends AbstractController
 {
-	
-	/**
-     * @Route("/confirmation/{code}", name="confirmation")
-     */
-    public function index3(Request $request, UserRepository $userRepository, $code)
+    private UserEditor $userEditor;
+    private const EMAIL_INPUT_ERROR='Please check your email. User with this email is already registered.';
+    private const EMAIL_SEND_ERROR='An error occurred during sending confirmation email. Please contact support.';
+    private const INVALID_CONFIRMATION='Invalid confirmation code';
+
+    public function __construct(UserEditor $userEditor)
     {
-		echo 'Okkk';
-		
-		$userRepository->findOneBy(['confirmationCode' => $code])->activate();
-		$this->getDoctrine()->getManager()->flush();
-		return $this->render('base.html.twig');
-	}
-	
+        $this->userEditor=$userEditor;
+    }
+
     /**
-     * @Route("/registration", name="registration")
+     * @Route("/{_locale<%app.supported_locales%>}/registration", name="registration")
      */
-    public function index(Request $request, UserPasswordEncoderInterface $passwordEncoder, CodeGenerator $codeGenerator, Mailerr $mailer)
+    public function index(Request $request, Mailer $mailer)
     {
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $user = $form->getData();
-            $password = $passwordEncoder->encodePassword(
-                $user,
-                $user->getPassword()
-            );
-            $user->setPassword($password);
-            $user->setConfirmationCode($codeGenerator->getConfirmationCode());
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-            $mailer->sendConfirmationMessage('katenok-nastja@mail.ru', 'Confirm registration', $user);
-            //return $this->redirectToRoute('app_login');
+            $user=$form->getData();
+            $user=$this->userEditor->createUser($user, $this->getDoctrine()->getManager());
+            if (!$user) {
+                $this->addFlash('error', self::EMAIL_INPUT_ERROR);
+            }
+            else if (!$mailer->sendConfirmationMessage('Confirm registration', $user)) {
+                $this->addFlash('error', self::EMAIL_SEND_ERROR);
+            }
         }
         return $this->render('registration/index.html.twig', [
-            'controller_name' => 'RegistrationController','form' => $form->createView()
+            'controller_name' => 'RegistrationController', 'form' => $form->createView()
         ]);
     }
+	
+	/**
+     * @Route("/confirmation/{code}", name="confirmation")
+     */
+    public function confirm(Request $request, UserRepository $userRepository, string $code)
+    {
+        $user=$userRepository->findOneBy(['confirmationCode' => $code]);
+		if($user) {
+            $user->activate();
+            $this->getDoctrine()->getManager()->flush();
+        }
+		else {
+            $this->addFlash( 'error',self::INVALID_CONFIRMATION);
+        }
+        return $this->render('base.html.twig');
+	}
 }

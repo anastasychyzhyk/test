@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    {% if loop.index is even %}
+        <tr class="bg-danger">
+    {% else %}
+        <tr>
+    {% endif %}
+    <td> <input type="checkbox" name="checkbox[]" value={{user.email}}> </td>
+    <td>{{ user.id }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.name }}</td>
+    <td>{{ user.status }}</td>
+    <td> <a class="nav-link" href="{{ path('registration') }}">Edit</a></td>
+   </tr>
+</html>

@@ -1,0 +1,37 @@
+{# templates/list/index.html.twig #} {% extends 'base.html.twig' %} {% block
+body %}
+    {{ "now"|date("F jS g:ia") }}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card bg-light mb-3 mt-3">
+                    {{ form_start(form) }}
+                    <table class="table">
+                        <tr class="table-success">
+                            <th>
+                                <input type="checkbox" id="maincheckbox">
+                                <script>
+                                    var maincheckbox=document.querySelector('#maincheckbox');
+                                    var checkboxes=document.getElementsByName('checkbox[]');
+                                    maincheckbox.onclick=function(){
+                                        for(var i=0; i<checkboxes.length;i++)
+                                            checkboxes[i].checked=maincheckbox.checked;
+                                    }
+                                </script>
+                            </th>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Link</th>
+                        </tr>
+                        {% for user in users %}
+                            {% include 'tr.html.twig'%}
+                        {% endfor %}
+                    </table>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
